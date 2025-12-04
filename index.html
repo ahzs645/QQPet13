@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link  rel="shortcut icon" href="logo.png" type="image/x-icon"/>
+	<link rel="shortcut icon" href="logo.png" type="image/x-icon"/>
+	<link rel="icon" href="logo.png" type="image/png"/>
 	<meta charset='utf-8' />
-	<title>《QQ宠物》相伴十三载</title>
+	<meta name="description" content="QQ宠物相伴十三载 - A nostalgic QQ Pet game commemorating 13 years"/>
+	<title>QQ Pet - 13th Anniversary</title>
 	<meta name='viewport' content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no'
 	/>
 	<meta name="renderer" content="webkit"/>
@@ -50,5 +52,40 @@
 	<!--启动类添加到这里-->
 	<script type="text/javascript" src="main.min.js"></script>
 
+	<!-- XPortfolio SDK Integration -->
+	<script>
+	(function() {
+		// Simple inline XPortfolio SDK for standalone compatibility
+		var XPortfolio = {
+			isInXPortfolio: function() { return window !== window.parent; },
+			init: function() {
+				return new Promise(function(resolve) {
+					if (!XPortfolio.isInXPortfolio()) {
+						resolve({ version: '1.0.0', capabilities: [] });
+						return;
+					}
+					window.parent.postMessage({ type: 'xportfolio', action: 'init', requestId: 'init' }, '*');
+					setTimeout(function() { resolve({ version: '1.0.0', capabilities: ['window'] }); }, 100);
+				});
+			},
+			window: {
+				setTitle: function(title) {
+					if (XPortfolio.isInXPortfolio()) {
+						window.parent.postMessage({ type: 'xportfolio', action: 'updateTitle', data: { title: title } }, '*');
+					}
+				}
+			}
+		};
+
+		// Initialize when running in XPortfolio
+		if (XPortfolio.isInXPortfolio()) {
+			XPortfolio.init().then(function() {
+				XPortfolio.window.setTitle('QQ Pet - 13th Anniversary');
+			});
+		}
+
+		window.XPortfolio = XPortfolio;
+	})();
+	</script>
 </body>
 </html>

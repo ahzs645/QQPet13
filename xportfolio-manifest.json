@@ -1,0 +1,27 @@
+{
+  "name": "QQ Pet - 13th Anniversary",
+  "short_name": "QQ Pet",
+  "description": "QQ宠物相伴十三载 - A nostalgic QQ Pet game commemorating 13 years of companionship",
+  "version": "1.0.0",
+  "author": "QQ Pet Team",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }
+  ],
+  "window": {
+    "width": 960,
+    "height": 640,
+    "minWidth": 800,
+    "minHeight": 533,
+    "resizable": true
+  },
+  "permissions": [],
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#000000",
+  "theme_color": "#FFB6C1"
+}
